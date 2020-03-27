@@ -1,0 +1,531 @@
+/* Base */
+
+body {
+  line-height: 1.7;
+  color: #8c92a0;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+/* Anime les éléments de la navbar à l'apparition*/
+
+a {
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease;
+}
+
+/* Fil d'ariane texte noir */
+
+.text-black {
+  color: black;
+}
+
+/* taille icones */
+
+#truck {
+  top: 0px;
+}
+
+#sync {
+  top: 0px;
+}
+
+#help {
+  top: 0px;
+}
+
+/* Boutons de la page */
+
+.btn {
+  text-transform: uppercase;
+  position: relative;
+  -webkit-transition: 0.2s all ease-in-out !important;
+  -o-transition: 0.2s all ease-in-out !important;
+  transition: 0.2s all ease-in-out !important;
+  top: 0;
+  letter-spacing: .05em;
+}
+
+.btn:hover, .btn:active, .btn:focus {
+  outline: none;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.btn.btn-sm {
+  font-size: 14px !important;
+  padding: 10px 20px !important;
+}
+
+.btn.btn-primary {
+  font-size: 17px;
+  font-weight: 300;
+  letter-spacing: .2em;
+}
+
+.btn:hover {
+  -webkit-box-shadow: 0 5px 20px -7px rgba(0, 0, 0, 0.9) !important;
+  box-shadow: 0 5px 20px -7px rgba(0, 0, 0, 0.9) !important;
+  top: -2px;
+}
+
+/* Input newsletter */
+
+.form-control:active, .form-control:focus {
+  border-color: #7971ea;
+}
+
+.form-control:hover, .form-control:active, .form-control:focus {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+/* Les éléments de la page ont un padding de 2,5em */
+
+.site-section {
+  padding: 2.5em 0;
+}
+
+@media (min-width: 768px) {
+  .site-section {
+    padding: 5em 0;
+  }
+}
+
+.site-section.site-section-sm {
+  padding: 4em 0;
+}
+
+/* Bordure inférieur au logo */
+
+.site-navbar .site-navbar-top {
+  border-bottom: 1px solid #f3f3f4;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 0px;
+}
+
+/* A voir les pour l'espace entre les catégories et les grosses ventes */
+
+.site-section-heading {
+  font-size: 30px;
+  color: #25262a;
+  position: relative;
+  margin-top: -50px;
+  margin-bottom: 50px;
+}
+
+/* Place une bordure antérieur au texte */
+
+.site-section-heading:before {
+  content: "";
+  left: 0%;
+  top: 0;
+  position: absolute;
+  width: 40px;
+  height: 2px;
+  background: #7971ea;
+}
+
+/* Place la bordure au centre */
+
+.site-section-heading.text-center:before {
+  content: "";
+  left: 50%;
+  top: 0;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  position: absolute;
+  width: 40px;
+  height: 2px;
+  background: #7971ea;
+}
+
+/* Ecarte des bordures les éléements sur tablette */
+
+@media (min-width: 768px) {
+  .site-navbar .site-navbar-top {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+/* Texte des éléments de la navbar */
+
+.site-navbar .site-logo a {
+  text-transform: uppercase;
+  color: #25262a;
+  letter-spacing: .2em;
+  font-size: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 2px solid #25262a;
+}
+
+/* Enleve le trait sous le logo */
+
+.site-navbar .site-logo a:hover {
+  text-decoration: none;
+}
+
+/* Couleur des icones */
+
+.site-navbar a {
+  color: #868995;
+}
+
+/* Couleur des icones au survol */
+
+.site-navbar a:hover {
+  color: #3d3f45;
+}
+
+/* Les icones sont à la suite les uns des autres */
+
+.site-navbar .site-top-icons ul li {
+  display: inline-block;
+}
+
+/* Ecarte les icones les uns des autres */
+
+.site-navbar .site-top-icons ul li a {
+  margin-right: 10px;
+}
+
+/* Le nombre d'éléments du panier est collé à l'icone du panier */
+
+.site-navbar .site-top-icons ul li a.site-cart {
+  display: block;
+  position: relative;
+}
+
+/* Modifie le nombre d'éléments dans le panier */
+
+.count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: -15px;
+  margin-top: -20px;
+  font-size: 13px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 50%;
+  display: block;
+  text-align: center;
+  background: #7971ea;
+  color: #fff;
+  -webkit-transition: .2s all ease-in-out;
+  -o-transition: .2s all ease-in-out;
+  transition: .2s all ease-in-out;
+}
+
+/* Animation du panier */
+
+.site-navbar .site-top-icons ul li a:hover .count {
+  -webkit-box-shadow: 0 3px 10px -4px rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 0 3px 10px -4px rgba(0, 0, 0, 0.3) !important;
+  margin-top: -22px;
+}
+
+/* Met l'onglet actuel en surbrillance */
+
+.site-navbar .site-navigation .site-menu .active>a {
+  color: #7971ea;
+}
+
+/* Créer plus d'espace entre la navbar */
+
+.site-navbar .site-navigation .site-menu a {
+  text-decoration: none !important;
+  font-size: 15px;
+  display: inline-block;
+}
+
+/* Met les éléments de la navbar les uns à la suite */
+
+.site-navbar .site-navigation .site-menu>li {
+  display: inline-block;
+  padding: 10px 5px;
+}
+
+/* Modifie les éléments de la navbar */
+
+.site-navbar .site-navigation .site-menu>li>a {
+  padding: 10px 10px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: #25262a;
+  font-size: 15px;
+  text-decoration: none !important;
+}
+
+/* Met les éléments au survole de la souris en surbrillance */
+
+.site-navbar .site-navigation .site-menu>li>a:hover {
+  color: #7971ea;
+}
+
+/* Blocks */
+
+/* Image appareil photo */
+
+.site-blocks-cover {
+  background-color: #c8c8c8;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+
+/* Block de l'accueil à voir le height */
+
+.site-blocks-cover, .site-blocks-cover .row {
+  min-height: 600px;
+  height: calc(100vh - 174px);
+}
+
+/* Texte h1 du block */
+
+.site-blocks-cover h1 {
+  font-size: 30px;
+  font-weight: 900;
+  color: #000;
+}
+
+@media (min-width: 768px) {
+  .site-blocks-cover h1 {
+    font-size: 50px;
+  }
+}
+
+/* Paragraphe du block */
+
+.site-blocks-cover p {
+  color: #333333;
+  font-size: 20px;
+  line-height: 35px;
+}
+
+/* Icones */
+
+.site-blocks-1 .icon span {
+  position: relative;
+  color: #7971ea;
+  top: -10px;
+  font-size: 50px;
+  display: inline-block;
+}
+
+.site-blocks-1 .text h2 {
+  color: #25262a;
+  letter-spacing: .05em;
+  font-size: 18px;
+}
+
+/* Modifie les blocs d'images */
+
+.site-blocks-1 .text p:last-child {
+  margin-bottom: 0;
+}
+
+.site-blocks-2 .block-2-item {
+  display: block;
+  position: relative;
+}
+
+.site-blocks-2 .block-2-item:before {
+  z-index: 1;
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: -moz-linear-gradient(top, transparent 0%, transparent 18%, rgba(0, 0, 0, 0.8) 99%, rgba(0, 0, 0, 0.8) 100%);
+  background: -webkit-linear-gradient(top, transparent 0%, transparent 18%, rgba(0, 0, 0, 0.8) 99%, rgba(0, 0, 0, 0.8) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(18%, transparent), color-stop(99%, rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0.8)));
+  background: -o-linear-gradient(top, transparent 0%, transparent 18%, rgba(0, 0, 0, 0.8) 99%, rgba(0, 0, 0, 0.8) 100%);
+  background: linear-gradient(to bottom, transparent 0%, transparent 18%, rgba(0, 0, 0, 0.8) 99%, rgba(0, 0, 0, 0.8) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#cc000000', GradientType=0);
+}
+
+.site-blocks-2 .block-2-item .image {
+  position: relative;
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+.site-blocks-2 .block-2-item .image img {
+  margin-bottom: 0;
+  -webkit-transition: .3s all ease-in-out;
+  -o-transition: .3s all ease-in-out;
+  transition: .3s all ease-in-out;
+}
+
+.site-blocks-2 .block-2-item .text {
+  z-index: 2;
+  bottom: 0;
+  padding-left: 20px;
+  position: absolute;
+  width: 100%;
+}
+
+/* Couleur du texte */
+
+.site-blocks-2 .block-2-item .text>span, .site-blocks-2 .block-2-item .text h3 {
+  color: #fff;
+}
+
+.site-blocks-2 .block-2-item .text>span {
+  font-size: 12px;
+  letter-spacing: .1em;
+  font-weight: 900;
+}
+
+/* Taille texte */
+
+.site-blocks-2 .block-2-item .text h3 {
+  font-size: 40px;
+}
+
+/* Animation images */
+
+.site-blocks-2 .block-2-item:hover .image img {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+/* Footer */
+
+.new_footer_area {
+  background: #fbfbfd;
+}
+
+.new_footer_top {
+  padding: 90px 0px 140px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.new_footer_area .footer_bottom {
+  padding-top: 5px;
+  padding-bottom: 50px;
+}
+
+.footer_bottom {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 20px;
+  color: #7f88a6;
+  padding: 27px 0px;
+}
+
+.new_footer_top .company_widget p {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 28px;
+  color: #6a7695;
+  margin-bottom: 20px;
+}
+
+a:hover, a:focus, .btn:hover, .btn:focus, button:hover, button:focus {
+  text-decoration: none;
+  outline: none;
+}
+
+.new_footer_top .f_widget.about-widget .f_list li a:hover {
+  color: #5e2ced;
+}
+
+.new_footer_top .f_widget.about-widget .f_list li {
+  margin-bottom: 11px;
+}
+
+.f_widget.about-widget .f_list li:last-child {
+  margin-bottom: 0px;
+}
+
+.f_widget.about-widget .f_list li {
+  margin-bottom: 15px;
+}
+
+.f_widget.about-widget .f_list {
+  margin-bottom: 0px;
+}
+
+.new_footer_top .f_social_icon a {
+  width: 44px;
+  height: 44px;
+  line-height: 43px;
+  background: transparent;
+  border: 1px solid #e2e2eb;
+  font-size: 24px;
+}
+
+.f_social_icon a {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 45px;
+  color: #858da8;
+  display: inline-block;
+  background: #ebeef5;
+  text-align: center;
+  -webkit-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+.new_footer_top .f_social_icon a:hover {
+  background: #5e2ced;
+  border-color: #5e2ced;
+  color: white;
+}
+
+.new_footer_top .f_social_icon a+a {
+  margin-left: 4px;
+}
+
+.new_footer_top .f-title {
+  margin-bottom: 30px;
+  color: #263b5e;
+}
+
+.f_600 {
+  font-weight: 600;
+}
+
+.f_size_18 {
+  font-size: 18px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #4b505e;
+}
+
+.new_footer_top .f_widget.about-widget .f_list li a {
+  color: #6a7695;
+}
+
+/* ajustement du style des boutons du footer */
+
+#facebook, #twitter, #pinterest, #linkedin {
+  text-decoration: none;
+}
+
+/* espacement entre texte et bouton coupon de réduction */
+
+#marge {
+  margin-top: 15%;
+}
+
+/* taille icone confirmation commande */
+
+#validation {
+  font-size: 25px;
+}

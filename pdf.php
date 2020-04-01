@@ -37,7 +37,8 @@ $pdf->Cell(59, 5, utf8_decode('Récapitulatif de votre commande'), 0, 1); //fin 
 
 $pdf->SetFont('Arial', '', 12);
 
-$timestamp = strtotime(date('H:i')) + 60 * 60;
+date_default_timezone_set('Europe/Paris'); 
+$timestamp = strtotime(date('H:i'));
 $time = date('H:i', $timestamp);
 
 $date = date("d/m/yy");

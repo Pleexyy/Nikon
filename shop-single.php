@@ -16,7 +16,8 @@ include("head.php");
   include("produits.php");
   ?>
 
-  <?php $bdd = mysqli_connect('localhost', 'root', '', 'Nikon') or die("Erreur de connexion : " . mysqli_error($bdd));
+  <?php 
+  include('bdd.php');
   $bdd->set_charset("utf8");
   $id =  $_GET['id'];
   $res = mysqli_query($bdd, "SELECT nom, prix, description, image

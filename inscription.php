@@ -1,6 +1,6 @@
 <?php
 session_start();
-$bdd = mysqli_connect('localhost', 'root', '', 'Nikon') or die("Erreur de connexion : " . mysqli_error($bdd));
+$bdd = mysqli_connect('localhost', 'root', '', 'Nikon') or die ("Erreur de connexion : " . mysqli_error($bdd));
 if (!empty($_POST['c_email']) && !empty($_POST['c_password']) && !empty($_POST['c_password2'])) {
     $prenom = $_POST['c_fname'];
     $nom = $_POST['c_lname'];

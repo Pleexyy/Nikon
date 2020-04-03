@@ -1,6 +1,6 @@
 <?php
 ini_set('display_errors', 1);
-$bdd = mysqli_connect('localhost', 'root', '', 'Nikon') or die("Erreur de connexion : " . mysqli_error($bdd));
+include('bdd.php');
 session_start();
 
 if (!empty($_POST['qte']) && isset($_POST['qte'])) {

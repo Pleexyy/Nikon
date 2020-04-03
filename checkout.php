@@ -192,8 +192,6 @@ include("head.php");
                   </div>
 
                   <div class="form-group" id="space2">
-                    <!-- <button class="btn btn-primary btn-lg py-3 btn-block" onclick="window.location='thankyou.html'">Passer la
-              commande</button> -->
                     <input type="submit" class="btn btn-primary btn-lg btn-block" value="Envoyer">
                   </div>
                 </div>

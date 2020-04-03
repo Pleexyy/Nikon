@@ -25,7 +25,7 @@ include("head.php");
 
       <div class="row mb-5">
         <?php
-        $bdd = mysqli_connect('localhost', 'root', '', 'Nikon') or die("Erreur de connexion : " . mysqli_error($bdd));
+        include('bdd.php');
         $bdd->set_charset("utf8");
         $res = mysqli_query($bdd, "SELECT * FROM Produits;");
         if (mysqli_num_rows($res) > 0) {

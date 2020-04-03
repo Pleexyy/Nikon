@@ -8,7 +8,7 @@ if (!isset($_SESSION['mail'])) {
 $mail = $_SESSION['mail'];
 require('fpdf182/fpdf.php');
 
-$bdd = mysqli_connect('localhost', 'root', '', 'Nikon') or die("Erreur de connexion : " . mysqli_error($bdd));
+include('bdd.php');
 $bdd->set_charset("utf8");
 
 $res2 = mysqli_query($bdd, "SELECT prenom, nom FROM Clients

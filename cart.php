@@ -47,7 +47,8 @@ include("head.php");
                 </tr>
               </thead>
               <tbody>
-                <?php $bdd = mysqli_connect('localhost', 'root', '', 'Nikon') or die("Erreur de connexion : " . mysqli_error($bdd));
+                <?php 
+                include('bdd.php');
                 $bdd->set_charset("utf8");
                 $res = mysqli_query($bdd, "SELECT * FROM Panier, Produits
                                            WHERE Panier.id = Produits.id

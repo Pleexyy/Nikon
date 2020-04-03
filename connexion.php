@@ -1,6 +1,6 @@
 <?php
 include("head.php");
-$bdd = mysqli_connect('localhost', 'root', '', 'Nikon') or die("Erreur de connexion : " . mysqli_error($bdd));
+include('bdd.php');
 if (!empty($_POST['c_email']) && !empty($_POST['c_password'])) {
     $mail = $_POST['c_email'];
     $mdp = $_POST['c_password'];

@@ -1,5 +1,5 @@
 <?php
-$bdd = mysqli_connect('localhost', 'root', '', 'Nikon') or die("Erreur de connexion : " . mysqli_error($bdd));
+include('bdd.php');
 session_start();
 if (isset($_POST['id']) && !empty($_POST['id']) && ($_POST['id'])) {
     $id = $_POST['id'];

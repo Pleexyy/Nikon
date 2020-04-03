@@ -1,6 +1,6 @@
 <?php
 /* va compter le nombre d'items dans le panier pour l'afficher */
-$bdd = mysqli_connect('localhost', 'root', '', 'Nikon') or die("Erreur de connexion : " . mysqli_error($bdd));
+include('bdd.php');
 session_start();
 if (isset($_POST['id']) && !empty($_POST['id'])) {
     $id = $_POST['id'];

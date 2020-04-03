@@ -1,5 +1,5 @@
 <?php
-$bdd = mysqli_connect('localhost', 'root', '', 'Nikon') or die("Erreur de connexion : " . mysqli_error($bdd));
+include('bdd.php');
 if (!empty($_POST['c_email']) && !empty($_POST['c_subject']) && !empty($_POST['c_message'])) {
    $prenom = $_POST['c_fname'];
    $nom = $_POST['c_lname'];

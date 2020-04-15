@@ -47,7 +47,7 @@ include("head.php");
                 </tr>
               </thead>
               <tbody>
-                <?php 
+                <?php
                 include('bdd.php');
                 $bdd->set_charset("utf8");
                 $res = mysqli_query($bdd, "SELECT * FROM Panier, Produits

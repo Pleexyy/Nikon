@@ -3,11 +3,11 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
-                <?php 
-                session_start();
-                if (isset($_SESSION['mail'])) {
-                    echo $_SESSION['mail'];
-                } ?>
+                    <?php
+                    session_start();
+                    if (isset($_SESSION['mail'])) {
+                        echo $_SESSION['mail'];
+                    } ?>
                 </div>
                 <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
                     <div class="site-logo">

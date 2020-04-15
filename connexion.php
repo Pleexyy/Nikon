@@ -20,7 +20,7 @@ if (!empty($_POST['c_email']) && !empty($_POST['c_password'])) {
     } else {
         include("account.php");
         echo "<script type=\"text/javascript\">" .
-        "Swal.fire(
+            "Swal.fire(
         'Erreur',
         'Identifiants incorrects',
         'error')" . "</script>";
@@ -28,9 +28,8 @@ if (!empty($_POST['c_email']) && !empty($_POST['c_password'])) {
 } else {
     include("account.php");
     echo "<script type=\"text/javascript\">" .
-    "Swal.fire(
+        "Swal.fire(
     'Erreur',
     'Certains champs sont vides',
     'error')" . "</script>";
 }
-

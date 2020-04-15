@@ -28,6 +28,16 @@ CREATE TABLE Panier (
     FOREIGN KEY (id) REFERENCES Produits (id)
 );
 
+CREATE TABLE Commande(
+    id INT AUTO_INCREMENT,
+    mail VARCHAR(50),
+    etat VARCHAR (50),
+    date VARCHAR(100),
+    PRIMARY KEY(etat, date),
+    FOREIGN KEY (mail) REFERENCES Clients (mail),
+)
+
+
 CREATE TABLE Messages (
     prenom VARCHAR(50),
     nom VARCHAR(50),

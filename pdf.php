@@ -6,6 +6,13 @@ if (!isset($_SESSION['mail'])) {
 }
 
 $mail = $_SESSION['mail'];
+
+include('bdd.php');
+$bdd->set_charset("utf8");
+
+$resultat = mysqli_query($bdd, "INSERT INTO Commande (mail, etat, date) 
+                                VALUES ('$mail', 'validé', now());");
+
 require('fpdf182/fpdf.php');
 
 include('bdd.php');
@@ -37,7 +44,7 @@ $pdf->Cell(59, 5, utf8_decode('Récapitulatif de votre commande'), 0, 1); //fin 
 
 $pdf->SetFont('Arial', '', 12);
 
-date_default_timezone_set('Europe/Paris'); 
+date_default_timezone_set('Europe/Paris');
 $timestamp = strtotime(date('H:i'));
 $time = date('H:i', $timestamp);
 

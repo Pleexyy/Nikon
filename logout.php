@@ -11,7 +11,6 @@ $_SESSION = array();
 session_unset();
 session_destroy();
 
-
 // Suppression des cookies de connexion automatique
 setcookie('mail', '');
 setcookie('mdp', '');

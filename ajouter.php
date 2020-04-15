@@ -6,7 +6,7 @@ if (isset($_POST['id']) && !empty($_POST['id'])) {
     $qte = $_POST['qte'];
     $produit = $_POST['produit'];
     $image = $_POST['image'];
-    
+
     $mail = $_SESSION['mail'];
 
     // si le produit est déjà dans le panier, seulement changer sa quantité, sinon, l'ajouter
@@ -19,8 +19,8 @@ if (isset($_POST['id']) && !empty($_POST['id'])) {
         $qte = $qte + $row['qte'];
         $change = mysqli_query($bdd, "UPDATE Panier SET qte = '$qte' WHERE '$id' = id;");
     } else {
-        $insertion = mysqli_query($bdd, "INSERT INTO Panier VALUES
-                                 ('$id' , 1, '$mail');");
+        $insertion = mysqli_query($bdd, "INSERT INTO Panier (id, qte, mail)
+                                         VALUES ('$id' , 1, '$mail');");
     }
     include("shop.php");
 } else {

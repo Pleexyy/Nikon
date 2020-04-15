@@ -16,7 +16,7 @@ include("head.php");
   include("produits.php");
   ?>
 
-  <?php 
+  <?php
   include('bdd.php');
   $bdd->set_charset("utf8");
   $id =  $_GET['id'];
@@ -36,14 +36,14 @@ include("head.php");
           <p class="mb-4"><?php echo $row['description']; ?></p>
           <p><strong class="text-primary h4"><?php echo $row['prix'] . " €"; ?></strong></p>
           <div class="mb-5">
-        <div class="input-group mb-3" style="max-width: 120px;">
-      </div>
-    </div>
-  </div>
+            <div class="input-group mb-3" style="max-width: 120px;">
+            </div>
+          </div>
+        </div>
 
-<?php
-  include("footer.php");
-?>
+        <?php
+        include("footer.php");
+        ?>
 
 </body>
 

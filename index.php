@@ -32,7 +32,7 @@ include("head.php");
 
 
 
-  <?php 
+  <?php
   include("info.php");
   include("categorie.php");
   ?>

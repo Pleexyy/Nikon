@@ -10,16 +10,24 @@ $mail = $_SESSION['mail'];
 include('bdd.php');
 $bdd->set_charset("utf8");
 
-$resultat = mysqli_query($bdd, "INSERT INTO Commande (mail, etat, date) 
-                                VALUES ('$mail', 'validé', now());");
+$select = mysqli_query($bdd, "SELECT id, qte
+                              FROM Panier
+                              WHERE mail = '$mail';");
 
+while($res = mysqli_fetch_assoc($select)) {
+$resultat = mysqli_query($bdd, "INSERT INTO Commande (id, qte, mail, etat, date) 
+                                VALUES ($res[id], $res[qte], '$mail', 'validé', now());");
+}
+
+// Si panier est validé, mettre les produits et id dans la table Commande, et vider l'ancien panier
 require('fpdf182/fpdf.php');
 
 include('bdd.php');
 $bdd->set_charset("utf8");
 
 $res2 = mysqli_query($bdd, "SELECT prenom, nom FROM Clients
-                                WHERE mail = '$mail';");
+                            WHERE mail = '$mail';");
+
 if (mysqli_num_rows($res2) > 0) {
     while ($row2 = mysqli_fetch_array($res2)) {
         $prenom = $row2['prenom'];
@@ -39,7 +47,7 @@ define('EURO', chr(128));
 
 $pdf->SetFont('Arial', 'B', 14);
 
-//Cell(width , height , text , border , end line , [align] )
+// Cell(width , height , text , border , end line , [align] )
 $pdf->Cell(59, 5, utf8_decode('Récapitulatif de votre commande'), 0, 1); //fin de ligne
 
 $pdf->SetFont('Arial', '', 12);

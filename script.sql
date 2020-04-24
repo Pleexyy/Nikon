@@ -29,14 +29,16 @@ CREATE TABLE Panier (
 );
 
 CREATE TABLE Commande(
-    id INT AUTO_INCREMENT,
+    idCmd INT AUTO_INCREMENT,
+    id INT,
+    qte INT,
     mail VARCHAR(50),
     etat VARCHAR (50),
     date VARCHAR(100),
-    PRIMARY KEY(etat, date),
-    FOREIGN KEY (mail) REFERENCES Clients (mail),
-)
-
+    PRIMARY KEY(idCmd),
+    FOREIGN KEY (id) REFERENCES Produits(id),
+    FOREIGN KEY (mail) REFERENCES Clients(mail)
+);
 
 CREATE TABLE Messages (
     prenom VARCHAR(50),

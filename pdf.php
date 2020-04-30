@@ -15,8 +15,8 @@ $select = mysqli_query($bdd, "SELECT id, qte
                               WHERE mail = '$mail';");
 
 while($res = mysqli_fetch_assoc($select)) {
-$resultat = mysqli_query($bdd, "INSERT INTO Commande (id, qte, mail, etat, date) 
-                                VALUES ($res[id], $res[qte], '$mail', 'validé', now());");
+    $resultat = mysqli_query($bdd, "INSERT INTO Commande (id, qte, mail, etat, date) 
+                                    VALUES ($res[id], $res[qte], '$mail', 'validé', now());");
 }
 
 // Si panier est validé, mettre les produits et id dans la table Commande, et vider l'ancien panier
@@ -69,7 +69,6 @@ $pdf->SetFont('Arial', 'B', 14);
 $pdf->Cell(100, 5, 'Facturation', 0, 1); //fin de ligne
 $pdf->SetFont('Arial', '', 12);
 
-
 //add dummy cell at beginning of each line for indentation
 $pdf->Cell(90, 5, $prenom, 0, 1);
 $pdf->Cell(90, 5, $nom, 0, 1);
@@ -91,6 +90,7 @@ $total = 0;
 $res = mysqli_query($bdd, "SELECT * FROM Panier, Produits
                                WHERE Panier.id = Produits.id
                                AND mail = '$mail';");
+
 if (mysqli_num_rows($res) > 0) {
     while ($row = mysqli_fetch_array($res)) {
         $id = $row['id'];

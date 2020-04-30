@@ -1,4 +1,4 @@
-<form method="post" action="ajouter.php">
+<form method="post" action="modifier.php">
     <input type="hidden" name="id" value='<?php echo $row['id'] ?>'>
     <input type="hidden" name="qte" value="1">
     <input type="hidden" name="produit" value='<?php echo $row['produit'] ?>'>

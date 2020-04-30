@@ -10,13 +10,11 @@ if ($_SESSION['mail'] == "admin@gmail.com") {
         $image = $_POST['c_newimage'];
         $description = $_POST['c_newdescription'];
 
-        $mail = $_SESSION['mail'];
-
-        $insertion = mysqli_query($bdd, "UPDATE Produits 
+        $insertion = mysqli_query($bdd, "UPDATE Produits
                                          SET nom = '$nom', prix = '$prix', presentation = '$presentation', image = '$image', description = '$description'
                                          WHERE id = '$id';");
-        // include("shop.php");
-        header('location: shop.php');
+        include("shop.php");
+        // header('location: shop.php');
     }
 } else {
     header('location: index.php');

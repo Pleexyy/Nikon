@@ -9,8 +9,6 @@ if ($_SESSION['mail'] == "admin@gmail.com") {
         $image = $_POST['c_image'];
         $description = $_POST['c_description'];
 
-        $mail = $_SESSION['mail'];
-
         $insertion = mysqli_query($bdd, "INSERT INTO Produits (nom, prix, presentation, image, description)
                                          VALUES ('$nom', '$prix', '$presentation', '$image', '$description');");
         include("shop.php");

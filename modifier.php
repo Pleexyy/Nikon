@@ -30,11 +30,13 @@ if (isset($_POST['add'])) {
 } else if (isset($_POST['supprimer'])) {
     $id = $_POST['id'];
 
-    $req = mysqli_query($bdd, "DELETE FROM Produits
+    $req = mysqli_query($bdd, "DELETE FROM Panier
+                               WHERE '$id' = id;");
+
+    $req2 = mysqli_query($bdd, "DELETE FROM Produits
                                WHERE '$id' = id;");
     include("shop.php");
 } else if (isset($_POST['modifier'])) {
-    $id = $_POST['id'];
     header('location: edit.php');
 } else {
     header('location: add.php');

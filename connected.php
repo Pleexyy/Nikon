@@ -6,7 +6,7 @@
     <input type="submit" class="buy-now btn btn-sm btn-primary" name="add" value="Ajouter au panier">
     <?php if ($_SESSION['mail'] == "admin@gmail.com") {
         echo '<input type="submit" class="buy-now btn btn-sm btn-primary" name="ajouter" value="Ajouter un produit" style="margin-top: 1%";>';
-        echo '<input type="submit" class="buy-now btn btn-sm btn-primary" name="supprimer" value="Supprimer le produit" style="margin-top: 1%";>';
         echo '<input type="submit" class="buy-now btn btn-sm btn-primary" name="modifier" value="Modifier le produit" style="margin-top: 1%";>';
+        echo '<input type="submit" class="buy-now btn btn-sm btn-primary" name="supprimer" value="Supprimer le produit" style="margin-top: 1%";>';
     } ?>
 </form>

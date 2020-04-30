@@ -34,10 +34,12 @@ if (isset($_POST['add'])) {
                                WHERE '$id' = id;");
 
     $req2 = mysqli_query($bdd, "DELETE FROM Produits
-                               WHERE '$id' = id;");
+                                WHERE '$id' = id;");
     include("shop.php");
 } else if (isset($_POST['modifier'])) {
-    header('location: edit.php');
+    $id = $_POST['id'];
+    // header('location: edit.php');
+    include('edit.php');
 } else {
     header('location: add.php');
 }

@@ -27,11 +27,15 @@ if (isset($_POST['add'])) {
     } else {
         header('location: index.php');
     }
-} else {
+} else if (isset($_POST['supprimer'])) {
     $id = $_POST['id'];
 
     $req = mysqli_query($bdd, "DELETE FROM Produits
                                WHERE '$id' = id;");
-
     include("shop.php");
+} else if (isset($_POST['modifier'])) {
+    $id = $_POST['id'];
+    header('location: edit.php');
+} else {
+    header('location: add.php');
 }

@@ -7,25 +7,39 @@ if (!isset($_SESSION['mail'])) {
 
 $mail = $_SESSION['mail'];
 
+$id = $_POST['id'];
+
 include('bdd.php');
 $bdd->set_charset("utf8");
 
-$select = mysqli_query($bdd, "SELECT id, qte
+$select = mysqli_query($bdd, "SELECT *
                               FROM Panier
                               WHERE mail = '$mail';");
 
-while($res = mysqli_fetch_assoc($select)) {
-    $resultat = mysqli_query($bdd, "INSERT INTO Commande (id, qte, mail, etat, date) 
-                                    VALUES ($res[id], $res[qte], '$mail', 'validé', now());");
+$rep = mysqli_query($bdd, "SELECT id
+                           FROM Panier
+                           WHERE mail = '$mail';");
+
+$donnee = mysqli_fetch_assoc($rep);
+
+$selectn = mysqli_query($bdd, "SELECT nom
+                               FROM Produits
+                               WHERE id = '$donnee[id]';");
+
+$ress = mysqli_fetch_assoc($selectn);
+
+while ($res = mysqli_fetch_assoc($select)) {
+    $resultat = mysqli_query($bdd, "INSERT INTO Commande (nom, qte, mail, etat, date) 
+                                    VALUES ('$ress[nom]', $res[qte], '$mail', 'validé', now());");
 }
 
-// Si panier est validé, mettre les produits et id dans la table Commande, et vider l'ancien panier
 require('fpdf182/fpdf.php');
 
 include('bdd.php');
 $bdd->set_charset("utf8");
 
-$res2 = mysqli_query($bdd, "SELECT prenom, nom FROM Clients
+$res2 = mysqli_query($bdd, "SELECT prenom, nom 
+                            FROM Clients
                             WHERE mail = '$mail';");
 
 if (mysqli_num_rows($res2) > 0) {
@@ -113,3 +127,6 @@ $pdf->Cell(25, 5.5, 'Montat total', 0, 0);
 $pdf->Cell(30, 5, $total . EURO, 1, 1, 'R'); //fin de ligne
 
 $pdf->Output();
+
+$req = mysqli_query($bdd, "DELETE FROM Panier
+                           WHERE mail = '$mail';");

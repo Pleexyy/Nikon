@@ -30,13 +30,12 @@ CREATE TABLE Panier (
 
 CREATE TABLE Commande(
     idCmd INT AUTO_INCREMENT,
-    id INT,
+    nom VARCHAR(100),
     qte INT,
     mail VARCHAR(50),
     etat VARCHAR (50),
     date VARCHAR(100),
     PRIMARY KEY(idCmd),
-    FOREIGN KEY (id) REFERENCES Produits(id),
     FOREIGN KEY (mail) REFERENCES Clients(mail)
 );
 

@@ -80,7 +80,6 @@ include("head.php");
                           </div>
                         </form>
                       </td>
-
                       <?php
                       $totalqte = $row['prix'] * $row['qte'];
                       ?>

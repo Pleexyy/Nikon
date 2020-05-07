@@ -28,6 +28,8 @@ $selectn = mysqli_query($bdd, "SELECT nom
 
 $ress = mysqli_fetch_assoc($selectn);
 
+/* insère les infos du panier dans la page commande */
+
 while ($res = mysqli_fetch_assoc($select)) {
     $resultat = mysqli_query($bdd, "INSERT INTO Commande (nom, qte, mail, etat, date) 
                                     VALUES ('$ress[nom]', $res[qte], '$mail', 'validé', now());");
@@ -38,9 +40,13 @@ require('fpdf182/fpdf.php');
 include('bdd.php');
 $bdd->set_charset("utf8");
 
+/* affiche les informations du client */
+
 $res2 = mysqli_query($bdd, "SELECT prenom, nom 
                             FROM Clients
                             WHERE mail = '$mail';");
+
+/* affiche les produits du panier */
 
 if (mysqli_num_rows($res2) > 0) {
     while ($row2 = mysqli_fetch_array($res2)) {

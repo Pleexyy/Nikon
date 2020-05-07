@@ -10,11 +10,13 @@ if (isset($_POST['add'])) {
 
         $mail = $_SESSION['mail'];
 
-        // si le produit est déjà dans le panier, seulement changer sa quantité, sinon, l'ajouter
         $result = mysqli_query($bdd, "SELECT qte FROM Panier, Clients
                                       WHERE '$id' = id 
                                       AND Clients.mail = Panier.mail 
                                       AND Panier.mail = '$mail';");
+
+        /* si le produit est déjà dans le panier, seulement changer sa quantité, sinon, l'ajouter */
+
         if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
             $qte = $qte + $row['qte'];
@@ -29,6 +31,8 @@ if (isset($_POST['add'])) {
     }
 } else if (isset($_POST['supprimer'])) {
     $id = $_POST['id'];
+
+    /* si c'est le bouton supprimer qui est cliqué, supprimer le produits des panier, puis des produits */
 
     $req = mysqli_query($bdd, "DELETE FROM Panier
                                WHERE '$id' = id;");

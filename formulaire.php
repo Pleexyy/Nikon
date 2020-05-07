@@ -7,6 +7,8 @@ if (!empty($_POST['c_email']) && !empty($_POST['c_subject']) && !empty($_POST['c
    $sujet = $_POST['c_subject'];
    $msg = $_POST['c_message'];
 
+   /* insere dans la base les informations du clients et le message envoyé */
+
    mysqli_query($bdd, "INSERT INTO Messages
                         VALUES ('$prenom', '$nom', '$mail', '$sujet','$msg');");
 

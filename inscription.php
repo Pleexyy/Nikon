@@ -17,7 +17,7 @@ if (!empty($_POST['c_email']) && !empty($_POST['c_password']) && !empty($_POST['
                                         WHERE '$mail' = mail;");
 
         $donnee = mysqli_fetch_assoc($resultat);
-        // mot de passe hashé inséré dans la base
+        // mot de passe hashé inséré dans la base si le mail est unique
         if ($mail != $donnee['mail']) {
             $resultat = mysqli_query($bdd, "INSERT INTO Clients VALUES
                                             ('$mail', '$prenom', '$nom', '$hashed_password');");

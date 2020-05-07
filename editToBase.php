@@ -10,6 +10,8 @@ if ($_SESSION['mail'] == "admin@gmail.com") {
         $image = $_POST['c_newimage'];
         $description = $_POST['c_newdescription'];
 
+        /* requete qui met à jour le produit dans la base (droit amdin) */
+
         $update = mysqli_query($bdd, "UPDATE Produits
                                       SET nom = '$nom', prix = $prix, presentation = '$presentation', image = '$image', description = '$description'
                                       WHERE id = '$id';");

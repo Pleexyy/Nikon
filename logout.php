@@ -17,6 +17,8 @@ session_destroy();
 setcookie('mail', '');
 setcookie('mdp', '');
 
+/* supprime le panier de l'utilisateur s'il se deconnecte */
+
 $delete = mysqli_query($bdd, "DELETE FROM Panier
                               WHERE mail = '$mail';");
 

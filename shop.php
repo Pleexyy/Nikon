@@ -27,15 +27,25 @@ include("head.php");
         <?php
         include('bdd.php');
         $bdd->set_charset("utf8");
-        $res = mysqli_query($bdd, "SELECT * FROM Produits;");
-        if (mysqli_num_rows($res) > 0) {
-          while ($row = mysqli_fetch_array($res)) {
+        
+        $nb = mysqli_query($bdd, "SELECT * 
+                                  FROM Produits;");
+
+        if (mysqli_num_rows($nb) > 0) {
+          while ($row = mysqli_fetch_array($nb)) {
         ?>
             <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
               <div class="block-4 text-center border">
                 <a href="shop-single.php?id=<?php echo $row['id']; ?>"><img src="<?php echo $row['image']; ?>" alt="Image placeholder" class="img-fluid"></a>
                 <div class="block-4-text p-4">
                   <h3><a href="shop-single.php?id=<?php echo $row['id']; ?>"><?php echo $row['nom']; ?></a></h3>
+
+                  <?php if ($row['stock'] > 0) { ?>
+                    <p class="mb-0"><?php echo "Stock actuel : <b>" . $row['stock'] . "</b>"; ?></p>
+                  <?php } else { ?>
+                    <p class="mb-0">Plus de stock</p>
+                  <?php }
+                  ?>
                   <p class="mb-0"><?php echo $row['presentation']; ?></p>
                   <p class="text-primary font-weight-bold"><?php echo $row['prix'] . " €"; ?></p>
                   <?php
@@ -51,11 +61,8 @@ include("head.php");
         }
         ?>
       </div>
-
     </div>
-
     <div class="col-md-3 order-1 mb-5 mb-md-0">
-
     </div>
   </div>
 

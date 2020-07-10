@@ -25,6 +25,13 @@ if (isset($_POST['add'])) {
             $insertion = mysqli_query($bdd, "INSERT INTO Panier (id, qte, mail)
                                              VALUES ('$id' , 1, '$mail');");
         }
+
+        /* met à jour le stock du produit concerne */
+        
+        $stock = mysqli_query($bdd, "UPDATE Produits 
+                                     SET stock = stock - 1
+                                     WHERE id = '$id';");
+
         include("shop.php");
     } else {
         header('location: index.php');
@@ -32,7 +39,7 @@ if (isset($_POST['add'])) {
 } else if (isset($_POST['supprimer'])) {
     $id = $_POST['id'];
 
-    /* si c'est le bouton supprimer qui est cliqué, supprimer le produits des panier, puis des produits */
+    /* si c'est le bouton supprimer qui est cliqué, supprimer le produit du panier, puis des produits */
 
     $req = mysqli_query($bdd, "DELETE FROM Panier
                                WHERE '$id' = id;");

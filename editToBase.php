@@ -9,11 +9,12 @@ if ($_SESSION['mail'] == "admin@gmail.com") {
         $presentation = $_POST['c_newpresentation'];
         $image = $_POST['c_newimage'];
         $description = $_POST['c_newdescription'];
+        $stock = $_POST['c_newstock'];
 
         /* requete qui met à jour le produit dans la base (droit amdin) */
 
         $update = mysqli_query($bdd, "UPDATE Produits
-                                      SET nom = '$nom', prix = $prix, presentation = '$presentation', image = '$image', description = '$description'
+                                      SET nom = '$nom', prix = $prix, presentation = '$presentation', image = '$image', description = '$description', stock = '$stock'
                                       WHERE id = '$id';");
 
         include("shop.php");

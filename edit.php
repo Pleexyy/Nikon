@@ -65,6 +65,12 @@ include("header.php");
                 </div>
               </div>
               <div class="form-group row">
+                <div class="col-md-12">
+                  <label for="c_newstock" class="text-black">Nouveau stock du produit<span class="text-danger">*</span></label>
+                  <input type="number" class="form-control" id="c_newstock" name="c_newstock">
+                </div>
+              </div>
+              <div class="form-group row">
                 <div class="col-lg-12">
                   <input type="submit" class="btn btn-primary btn-lg btn-block" value="Modifier le produit">
                 </div>

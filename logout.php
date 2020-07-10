@@ -8,6 +8,15 @@ if (empty($_SESSION['mail'])) {
 
 $mail = $_SESSION['mail'];
 
+$values = mysqli_query($bdd, "SELECT * FROM Panier
+                                  WHERE mail = '$mail';");
+
+while($data = mysqli_fetch_assoc($values)) {
+    $update = mysqli_query($bdd, "UPDATE Produits
+                                  SET stock = stock + '$data[qte]'
+                                  WHERE id = '$data[id]';");
+}
+
 // Suppression des variables de session et de la session
 $_SESSION = array();
 session_unset();

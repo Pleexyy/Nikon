@@ -30,15 +30,23 @@
                                 <i class="fas fa-shopping-cart" id="cart"></i>
                                 </a>
                                 </li>';
-                                echo '<li><a href="logout.php"><i class="fas fa-sign-out-alt" style="font-size: 20.5px"></i></a></li>';
-                            } else {
+                                $nb = mysqli_query($bdd, "SELECT * 
+                                                          FROM Panier;");
+
+                                $row = mysqli_fetch_assoc($nb);
+                            ?>
+                                <li>
+                                    <a href="logout.php" class="site-cart">
+                                        <i class="fas fa-sign-out-alt" id="cart" style="font-size: 20px;"></i>
+                                    </a>
+                                </li>
+                            <?php } else {
                                 echo '<li><a href="account.php"><i class="fas fa-user" id="account"></i></a></li>';
                             }
                             ?>
                         </ul>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

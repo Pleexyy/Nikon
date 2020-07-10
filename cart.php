@@ -86,7 +86,8 @@ include("head.php");
                       <td><?php echo $totalqte . "€" ?></td>
                       <td>
                         <form method="post" action="supprimer.php">
-                          <input type="hidden" name="id" value='<?php echo $row['id'] ?> _count'>
+                          <input type="hidden" name="qte" value="<?php echo $row['qte']; ?>">
+                          <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
                           <input type="submit" class="buy-now btn btn-sm btn-primary" name="delete" value="X">
                         </form>
                       </td>

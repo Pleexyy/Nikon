@@ -8,11 +8,12 @@ if ($_SESSION['mail'] == "admin@gmail.com") {
         $presentation = $_POST['c_presentation'];
         $image = $_POST['c_image'];
         $description = $_POST['c_description'];
+        $stock = $_POST['c_stock'];
 
         /* insere nouveau produit dans la base, depuis le backoffice si admin connecte */
         
-        $insertion = mysqli_query($bdd, "INSERT INTO Produits (nom, prix, presentation, image, description)
-                                         VALUES ('$nom', '$prix', '$presentation', '$image', '$description');");
+        $insertion = mysqli_query($bdd, "INSERT INTO Produits (nom, prix, stock, presentation, image, description)
+                                         VALUES ('$nom', '$prix', '$stock', '$presentation', '$image', '$description');");
         include("shop.php");
     }
 } else {

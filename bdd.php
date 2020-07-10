@@ -1,3 +1,3 @@
 <?php
-    $bdd = mysqli_connect('localhost', 'root', '', 'Nikon') or die ("Erreur de connexion : " . mysqli_error($bdd));
+   $pdo = new PDO('mysql:host=localhost;dbname=NikonV2', 'root', 'couleuvre');
 ?>

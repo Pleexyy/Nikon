@@ -43,7 +43,6 @@ if (!empty($_POST['c_email']) && !empty($_POST['c_password'])) {
 
             //Redirect to our protected page, which we called home.php
             header("location: shop.php");
-            exit;
         } else {
             //$validPassword was FALSE. Passwords do not match.
             include("account.php");

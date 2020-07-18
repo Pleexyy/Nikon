@@ -39,7 +39,7 @@ include("header.php");
                 <div class="col-md-6">
                   <label for="c_newfname" class="text-black">Nouveau nom du produit</label>
                   <input type="text" class="form-control" id="c_newfname" name="c_newfname">
-                  <input type="hidden" name="id" value="<?php echo $_POST['id'];?>">
+                  <input type="hidden" name="id" value="<?php echo $_POST['id']; ?>">
                 </div>
                 <div class="col-md-6">
                   <label for="c_newprice" class="text-black">Nouveau prix du produit</label>

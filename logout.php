@@ -1,20 +1,19 @@
 <?php
 session_start();
-include('bdd.php');
-if (empty($_SESSION['mail'])) {
+require 'bdd.php';
+if (empty($_SESSION['login'])) {
     header("location: index.php");
     die();
 }
 
-$mail = $_SESSION['mail'];
+$mail = $_SESSION['login'];
 
-$values = mysqli_query($bdd, "SELECT * FROM Panier
-                                  WHERE mail = '$mail';");
+$values = $pdo->prepare("SELECT * FROM Panier WHERE mail = '$mail';");
+$values->execute();
 
-while($data = mysqli_fetch_assoc($values)) {
-    $update = mysqli_query($bdd, "UPDATE Produits
-                                  SET stock = stock + '$data[qte]'
-                                  WHERE id = '$data[id]';");
+while ($data = $values->fetch(PDO::FETCH_ASSOC)) {
+    $update = $pdo->prepare("UPDATE Produits SET stock = stock + '$data[qte]' WHERE id = '$data[id]';");
+    $update->execute();
 }
 
 // Suppression des variables de session et de la session
@@ -26,10 +25,10 @@ session_destroy();
 setcookie('mail', '');
 setcookie('mdp', '');
 
-/* supprime le panier de l'utilisateur s'il se deconnecte */
+// supprime le panier de l'utilisateur s'il se deconnecte
 
-$delete = mysqli_query($bdd, "DELETE FROM Panier
-                              WHERE mail = '$mail';");
+$delete = $pdo->prepare("DELETE FROM Panier WHERE mail = '$mail';");
+$delete->execute();
 
 include("index.php");
 

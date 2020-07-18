@@ -17,13 +17,12 @@ include("head.php");
   ?>
 
   <?php
-  include('bdd.php');
-  $bdd->set_charset("utf8");
+  require 'bdd.php';
   $id =  $_GET['id'];
-  $res = mysqli_query($bdd, "SELECT nom, prix, description, image
-                                     FROM Produits
-                                     WHERE id = '$id';");
-  $row = mysqli_fetch_assoc($res);
+
+  $res = $pdo->prepare("SELECT nom, prix, description, image FROM Produits WHERE id = '$id';");
+  $res->execute();
+  $row = $res->fetch(PDO::FETCH_ASSOC);
   ?>
   <div class="site-section">
     <div class="container">
@@ -40,10 +39,13 @@ include("head.php");
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <?php
-        include("footer.php");
-        ?>
+  <?php
+  include("footer.php");
+  ?>
 
 </body>
 

@@ -1,61 +1,55 @@
 <?php
 session_start();
-if (!isset($_SESSION['mail'])) {
+if (!isset($_SESSION['login'])) {
     header("location: index.php");
     die();
 }
 
-$mail = $_SESSION['mail'];
+$mail = $_SESSION['login'];
 
 $id = $_POST['id'];
 
-include('bdd.php');
-$bdd->set_charset("utf8");
+require 'bdd.php';
 
-$select = mysqli_query($bdd, "SELECT *
-                              FROM Panier
-                              WHERE mail = '$mail';");
+$select = $pdo->prepare("SELECT * FROM Panier WHERE mail = '$mail';");
+$select->execute();
 
-$rep = mysqli_query($bdd, "SELECT id
-                           FROM Panier
-                           WHERE mail = '$mail';");
+$rep = $pdo->prepare("SELECT id FROM Panier WHERE mail = '$mail';");
+$rep->execute();
 
-$donnee = mysqli_fetch_assoc($rep);
+$donnee = $rep->fetch(PDO::FETCH_ASSOC);
 
-$selectn = mysqli_query($bdd, "SELECT nom
-                               FROM Produits
-                               WHERE id = '$donnee[id]';");
+$selectn = $pdo->prepare("SELECT nom FROM Produits WHERE id = '$donnee[id]';");
+$selectn->execute();
 
-$ress = mysqli_fetch_assoc($selectn);
+$ress = $selectn->fetch(PDO::FETCH_ASSOC);
 
 /* insère les infos du panier dans la page commande */
 
-while ($res = mysqli_fetch_assoc($select)) {
-    $resultat = mysqli_query($bdd, "INSERT INTO Commande (nom, qte, mail, etat, date) 
-                                    VALUES ('$ress[nom]', $res[qte], '$mail', 'validé', now());");
+while ($res = $select->fetch(PDO::FETCH_ASSOC)) {
+    $resultat = $pdo->prepare("INSERT INTO Commande (nom, qte, mail, etat, date) VALUES ('$ress[nom]', $res[qte], '$mail', 'validé', now());");
+    $resultat->execute();
 }
 
 require('fpdf182/fpdf.php');
 
-include('bdd.php');
-$bdd->set_charset("utf8");
+require 'bdd.php';
 
 /* affiche les informations du client */
 
-$res2 = mysqli_query($bdd, "SELECT prenom, nom 
-                            FROM Clients
-                            WHERE mail = '$mail';");
+$res2 = $pdo->prepare("SELECT prenom, nom  FROM Clients WHERE mail = '$mail';");
+$res2->execute();
 
 /* affiche les produits du panier */
-
-if (mysqli_num_rows($res2) > 0) {
-    while ($row2 = mysqli_fetch_array($res2)) {
+$productCount = $res2->rowCount();
+if ($productCount > 0) {
+    while ($row2 = $res2->fetch(PDO::FETCH_ASSOC)) {
         $prenom = $row2['prenom'];
         $nom = $row2['nom'];
     }
 }
 
-$mail = $_SESSION['mail'];
+$mail = $_SESSION['login'];
 
 $pdf = new FPDF();
 
@@ -107,12 +101,13 @@ $pdf->Cell(30, 5, 'Prix total', 1, 1, 'C'); //fin de ligne
 $pdf->SetFont('Arial', '', 12);
 
 $total = 0;
-$res = mysqli_query($bdd, "SELECT * FROM Panier, Produits
-                               WHERE Panier.id = Produits.id
-                               AND mail = '$mail';");
 
-if (mysqli_num_rows($res) > 0) {
-    while ($row = mysqli_fetch_array($res)) {
+$res = $pdo->prepare("SELECT * FROM Panier, Produits WHERE Panier.id = Produits.id AND mail = '$mail';");
+$res->execute();
+
+$productCount = $res->rowCount();
+if ($productCount > 0) {
+    while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
         $id = $row['id'];
         $qte = $row['qte'];
         $produit = $row['nom'];
@@ -134,5 +129,5 @@ $pdf->Cell(30, 5, $total . EURO, 1, 1, 'R'); //fin de ligne
 
 $pdf->Output();
 
-$req = mysqli_query($bdd, "DELETE FROM Panier
-                           WHERE mail = '$mail';");
+$req = $pdo->prepare("DELETE FROM Panier WHERE mail = '$mail';");
+$req->execute();

@@ -5,8 +5,8 @@
                 <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
                     <?php
                     session_start();
-                    if (isset($_SESSION['user_id']) || isset($_SESSION['logged_in'])) {
-                        echo $_SESSION['user_id'];
+                    if ((isset($_SESSION['login']) && isset($_SESSION['mdp']))) {
+                        echo $_SESSION['login'];
                     } ?>
                 </div>
                 <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
@@ -21,19 +21,15 @@
                             <li><a href="#"><i class="far fa-heart" id="heart"></i></a></li>
                             <?php
                             // affiche bouton se déconnecter + panier au lieu de mon compte si une session est ouverte
-                            if (!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])) {
+                            if (!(isset($_SESSION['login']) && !(isset($_SESSION['mdp'])))) {
                                 session_start();
                             }
-                            if (isset($_SESSION['user_id']) || isset($_SESSION['logged_in'])) {
+                            if ((isset($_SESSION['login']) && isset($_SESSION['mdp']))) {
                                 echo '<li>
                                 <a href="cart.php" class="site-cart">
                                 <i class="fas fa-shopping-cart" id="cart"></i>
                                 </a>
                                 </li>';
-                                $nb = mysqli_query($bdd, "SELECT * 
-                                                          FROM Panier;");
-
-                                $row = mysqli_fetch_assoc($nb);
                             ?>
                                 <li>
                                     <a href="logout.php" class="site-cart">

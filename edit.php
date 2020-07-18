@@ -1,5 +1,5 @@
 <?php session_start();
-if ($_SESSION['mail'] != "admin@gmail.com") {
+if ($_SESSION['login'] != "admin@gmail.com") {
   header("location: index.php");
   die();
 } ?>

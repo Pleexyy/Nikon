@@ -26,14 +26,15 @@ include("head.php");
       <div class="row mb-5">
         <?php
         require 'bdd.php';
-        $bdd->set_charset("utf8");
 
-        $res = $dbh->prepare("SELECT * FROM Produits");
+        $res = $pdo->prepare("SELECT * FROM Produits;");
         $res->execute();
+
         $productCount = $res->rowCount();
         if ($productCount > 0) {
-          while ($row = $res->fetch()) {
-            ?>
+          // while ($row = $res->fetch()) {
+          while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
+        ?>
             <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
               <div class="block-4 text-center border">
                 <a href="shop-single.php?id=<?php echo $row['id']; ?>"><img src="<?php echo $row['image']; ?>" alt="Image placeholder" class="img-fluid"></a>
@@ -48,7 +49,7 @@ include("head.php");
                   <p class="mb-0"><?php echo $row['presentation']; ?></p>
                   <p class="text-primary font-weight-bold"><?php echo $row['prix'] . " €"; ?></p>
                   <?php
-                  if (isset($_SESSION['user_id']) || isset($_SESSION['logged_in'])) {
+                  if (isset($_SESSION['login']) || isset($_SESSION['mdp'])) {
                     include("connected.php");
                   }
                   ?>

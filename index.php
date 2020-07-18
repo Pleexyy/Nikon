@@ -22,7 +22,7 @@ include("head.php");
               insaisissable.”
               – Elliot Erwitt </p>
             <p>
-              <a href="#" class="btn btn-sm btn-primary">Acheter</a>
+              <a href="shop.php" class="btn btn-sm btn-primary">Acheter</a>
             </p>
           </div>
         </div>

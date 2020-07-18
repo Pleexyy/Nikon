@@ -1,7 +1,7 @@
 <?php
 include('bdd.php');
 session_start();
-if ($_SESSION['mail'] == "admin@gmail.com") {
+if ($_SESSION['login'] == "admin@gmail.com") {
     if (isset($_POST) && !empty($_POST)) {
         $id = $_POST['id'];
         $nom = $_POST['c_newfname'];
@@ -11,11 +11,10 @@ if ($_SESSION['mail'] == "admin@gmail.com") {
         $description = $_POST['c_newdescription'];
         $stock = $_POST['c_newstock'];
 
-        /* requete qui met à jour le produit dans la base (droit amdin) */
+        /* requete qui met à jour le produit dans la base (droit admin) */
 
-        $update = mysqli_query($bdd, "UPDATE Produits
-                                      SET nom = '$nom', prix = $prix, presentation = '$presentation', image = '$image', description = '$description', stock = '$stock'
-                                      WHERE id = '$id';");
+        $update = $pdo->prepare("UPDATE Produits SET nom = '$nom', prix = $prix, presentation = '$presentation', image = '$image', description = '$description', stock = '$stock' WHERE id = '$id';");
+        $update->execute();
 
         include("shop.php");
     }

@@ -13,19 +13,14 @@ if (!empty($_POST['c_email']) && !empty($_POST['c_password']) && !empty($_POST['
         $sql = "SELECT COUNT(mail) AS num FROM Clients WHERE mail = :mail";
         $stmt = $pdo->prepare($sql);
 
-        //Bind the provided username to our prepared statement.
         $stmt->bindValue(':mail', $mail);
 
-        //Execute.
         $stmt->execute();
 
         //Fetch the row.
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        //If the provided username already exists - display error.
-        //TO ADD - Your own method of handling this error. For example purposes,
-        //I'm just going to kill the script completely, as error handling is outside
-        //the scope of this tutorial.
+        //Si le nom d'utilisateur fourni existe déjà
         if ($row['num'] > 0) {
             include("index.php");
             echo "<script type=\"text/javascript\">" .
@@ -35,24 +30,22 @@ if (!empty($_POST['c_email']) && !empty($_POST['c_password']) && !empty($_POST['
             'error')" . "</script>";
         }
 
-        //Hash the password as we do NOT want to store our passwords in plain text.
+        //Hache le mot de passe car nous ne voulons PAS stocker nos mots de passe en texte brut.
         $passwordHash = password_hash($mdp, PASSWORD_BCRYPT, array("cost" => 12));
 
-        //Prepare our INSERT statement.
-        //Remember: We are inserting a new row into our users table.
+        //Préparez notre instruction INSERT.
         $sql = "INSERT INTO Clients (mail, prenom, nom, mdp) VALUES (:mail, :prenom, :nom, :mdp)";
         $stmt = $pdo->prepare($sql);
 
-        //Bind our variables.
         $stmt->bindValue(':mail', $mail);
         $stmt->bindValue(':prenom', $prenom);
         $stmt->bindValue(':nom', $nom);
         $stmt->bindValue(':mdp', $passwordHash);
 
-        //Execute the statement and insert the new account.
+        //Exécute et insére le nouveau compte.
         $result = $stmt->execute();
 
-        //If the signup process is successful.
+        //Si le processus d'inscription réussit.
         if ($result) {
             include("account.php");
             echo "<script type=\"text/javascript\">" .

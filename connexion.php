@@ -5,23 +5,20 @@ if (!empty($_POST['c_email']) && !empty($_POST['c_password'])) {
     $mail = $_POST['c_email'];
     $mdp = $_POST['c_password'];
 
-    //Retrieve the user account information for the given username.
+    //Récupère les informations de compte utilisateur pour le nom d'utilisateur donné.
     $sql = "SELECT mail, mdp FROM Clients WHERE mail = :mail";
     $stmt = $pdo->prepare($sql);
 
-    //Bind value.
     $stmt->bindValue(':mail', $mail);
 
-    //Execute.
     $stmt->execute();
 
     //Fetch row.
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    //If $row is FALSE.
+    //Si $row est FAUX
     if ($user === false) {
-        //Could not find a user with that username!
-        //PS: You might want to handle this error in a more user-friendly manner!
+        //Impossible de trouver un utilisateur avec ce nom d'utilisateur!
         include("account.php");
         echo "<script type=\"text/javascript\">" .
             "Swal.fire(
@@ -29,22 +26,23 @@ if (!empty($_POST['c_email']) && !empty($_POST['c_password'])) {
         'Identifiants incorrects',
         'error')" . "</script>";
     } else {
-        //User account found. Check to see if the given password matches the
-        //password hash that we stored in our users table.
+        //Compte utilisateur trouvé. Vérifiez si le mot de passe donné correspond au
+        // hachage de mot de passe que nous avons stocké dans notre table d'utilisateurs.
 
-        //Compare the passwords.
+        //Compare les mots de passe
         $validPassword = password_verify($mdp, $user['mdp']);
 
-        //If $validPassword is TRUE, the login has been successful.
+        //Si $validPassword est VRAI, l'utilisateur est bien loggé.
         if ($validPassword) {
-            //Provide the user with a login session.
-            $_SESSION['user_id'] = $user['mail'];
-            $_SESSION['logged_in'] = time();
+            session_start();
+            //Fourni à l'utilisateur une session de connexion.
+            $_SESSION['login'] = $user['mail'];
+            $_SESSION['mdp'] = $user['mdp'];
 
-            //Redirect to our protected page, which we called home.php
+            // redirige vers la page des produits
             header("location: shop.php");
         } else {
-            //$validPassword was FALSE. Passwords do not match.
+            //$validPassword est FAUX. Les mots de passe ne correspondent pas.
             include("account.php");
             echo "<script type=\"text/javascript\">" .
                 "Swal.fire(

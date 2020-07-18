@@ -3,8 +3,8 @@
 
 <?php
 session_start();
-$mail = $_SESSION['mail'];
-if (empty($_SESSION['mail'])) {
+$mail = $_SESSION['login'];
+if (empty($_SESSION['login'])) {
   header("location: index.php");
   die();
 }
@@ -48,13 +48,14 @@ include("head.php");
               </thead>
               <tbody>
                 <?php
-                include('bdd.php');
-                $bdd->set_charset("utf8");
-                $res = mysqli_query($bdd, "SELECT * FROM Panier, Produits
-                                           WHERE Panier.id = Produits.id
-                                           AND mail = '$mail';");
-                if (mysqli_num_rows($res) > 0) {
-                  while ($row = mysqli_fetch_array($res)) {
+                require 'bdd.php';
+
+                $res = $pdo->prepare("SELECT * FROM Panier, Produits WHERE Panier.id = Produits.id AND mail = '$mail';");
+                $res->execute();
+
+                $productCount = $res->rowCount();
+                if ($productCount > 0) {
+                  while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                     <tr>
                       <td class="product-thumbnail">
@@ -137,10 +138,11 @@ include("head.php");
                   <div class="col-md-6 text-right">
                     <?php
                     $total = 0;
-                    $res = mysqli_query($bdd, "SELECT * FROM Panier, Produits
-                                             WHERE Panier.id = Produits.id
-                                             AND mail = '$mail';");
-                    while ($row = mysqli_fetch_assoc($res)) {
+
+                    $res = $pdo->prepare("SELECT * FROM Panier, Produits WHERE Panier.id = Produits.id AND mail = '$mail';");
+                    $res->execute();
+
+                    while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
                       $total = $total + $row['prix'] * $row['qte'];
                     } ?>
                     <strong class="text-black"><?php echo $total . " €"; ?></strong>
